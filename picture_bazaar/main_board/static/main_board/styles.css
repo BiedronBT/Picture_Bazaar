@@ -5,13 +5,28 @@ body {
   padding: 0.5em;
 }
 
-.content-section {
+.my-sidebar {
   background: #d6f9ca;
-  padding: 1% 1%;
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
+  text-align: center;
 }
+
+.content-section {
+  background: #d6f9ca;
+  padding: 1em 1em;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+a.sb-link {
+  display: block;
+  margin: 20px 0 20px 0;
+}
+
 
 h1, h2, h3, h4, h5, h6 {
   color: #444444;
