@@ -1,4 +1,4 @@
-from .. import secrets
+from . import secrets
 
 """
 Django settings for picture_bazaar project.
