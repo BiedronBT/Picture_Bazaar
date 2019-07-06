@@ -5,6 +5,11 @@ body {
   padding: 0.5em;
 }
 
+.my-form {
+  background: #d6f9ca;
+  padding: 2em;
+}
+
 .my-sidebar {
   background: #d6f9ca;
   border: 1px solid #dddddd;
@@ -14,9 +19,9 @@ body {
 }
 
 .content-section {
-  background: #d6f9ca;
+  /*background: #d6f9ca;*/
   padding: 1em 1em;
-  border: 1px solid #dddddd;
+  /*border: 1px solid #dddddd;*/
   border-radius: 3px;
   margin-bottom: 20px;
   text-align: center;
