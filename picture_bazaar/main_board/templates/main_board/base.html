@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{% static 'main_board/styles.css' %}">
-    {% block title %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+
 </head>
 
 <body>
@@ -21,8 +22,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
+                        <!--
                         <a class="nav-item nav-link" href="#">Home</a>
                         <a class="nav-item nav-link" href="#">About</a>
+                        -->
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
@@ -53,7 +56,7 @@
                 </div>
             </div>
             <div class="col-md-10">
-                <div class="content-section">
+                <div class="row">
                     {% block content %}
                     {% endblock %}
                 </div>

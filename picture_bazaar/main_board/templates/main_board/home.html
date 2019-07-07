@@ -1,9 +1,27 @@
 {% extends 'main_board/base.html' %}
 
-{% block title %}<title>Picture Bazaar - Home</title>{% endblock %}
+{% block title %}Picture Bazaar - Home{% endblock %}
 
 {% block content %}
 
-    Home view
+    {% for image in images %}
+        <div class="col-md-2 col-sm-4 col-xs-6">
+            <article class="pic-box">
+
+                <div class="pic-only col-md-12" style="background-image:url({{ image.image.url }});">
+                </div>
+                <!--
+                <div class="pic-only">
+                    <img src="{{ image.image.url }}">
+                </div>
+                -->
+                <div class="pic-text">
+                    <h4>{{ image.title }}</h4>
+                    <h6>{{ image.author.username }}</h6>
+                </div>
+
+            </article>
+        </div>
+    {% endfor %}
 
 {% endblock %}

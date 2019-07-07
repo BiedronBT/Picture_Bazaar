@@ -1,11 +1,17 @@
 {% extends "main_board/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Picture Bazaar - Login
+{% endblock %}
+
 {% block content %}
 	<div class="col-lg-4 col-md-6 col-sm-8 mx-auto my-form">
         <form method="Post">
             {% csrf_token %}
             <fieldset class="form-group">
                 <h2 class="mb-5">Log In</h2>
-                {{ form.as_p }}
+                {{ form|crispy }}
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Login</button>
