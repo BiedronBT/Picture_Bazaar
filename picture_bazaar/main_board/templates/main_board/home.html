@@ -5,22 +5,34 @@
 {% block content %}
 
     {% for image in images %}
-        <div class="col-md-2 col-sm-4 col-xs-6">
-            <article class="pic-box">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
 
-                <div class="pic-only col-md-12" style="background-image:url({{ image.image.url }});">
-                </div>
-                <!--
-                <div class="pic-only">
-                    <img src="{{ image.image.url }}">
-                </div>
-                -->
-                <div class="pic-text">
-                    <h4>{{ image.title }}</h4>
-                    <h6>{{ image.author.username }}</h6>
-                </div>
+                <div class="pic-box">
+                    <a href="{% url 'image-detail' image.id %}">
+                        <div class="pic-only" style="background-image:url({{ image.image.url }});">
+                        </div>
+                    </a>
+                    <!--
+                    <div class="pic-only">
+                        <img src="{{ image.image.url }}">
+                    </div>
+                    -->
+                    <div class="pic-text">
 
-            </article>
+                        <h5>
+                            <a href="{% url 'image-detail' image.id %}" class="image-title">
+                                {{ image.title|capfirst|truncatechars:28 }}
+                            </a>
+                        </h5>
+
+                        <span class="author">By <a href="#">{{ image.author.username }}</a></span>
+                        <div class="">
+                            <span class="date-uploaded">{{ image.date|timesince }} ago</span>
+                            <span class="dimensions">{{ image.width }} x {{ image.height }}</span>
+                        </div>
+                    </div>
+
+                </div>
         </div>
     {% endfor %}
 

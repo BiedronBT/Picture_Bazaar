@@ -1,6 +1,7 @@
 
 
 body {
+  font-family: Times, serif, "Times New Roman";
   background: #f6f8f6;
   color: #333333;
   margin-top: 5em;
@@ -11,8 +12,52 @@ img {
   object-fit: contain;
 }
 
+h5 {
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 0px;
+}
+
+h6 {
+  margin: -2px 0px -2px 0px;
+  font-size: 12px;
+}
+
+.image-title {
+  color: darkslategrey;
+  transition: 0.5s;
+}
+
+.image-title:hover {
+  color: slateblue;
+  text-decoration: none;
+}
+
+.author {
+  font-size: 11px;
+  font-family: Arial;
+}
+
+.date-uploaded {
+  font-family: Arial;
+  float: left;
+  display: inline;
+  font-size: 11px;
+}
+
+.dimensions {
+  font-family: Arial;
+  float: right;
+  display: inline;
+  font-size: 11px;
+}
+
 .my-navbar {
-  background-color: #339922;
+  font-family: Arial;
+  /*background-color: #339922;*/
+  background-image: linear-gradient(mediumseagreen, seagreen);
+  height: 4em;
+  border-bottom: 2px solid green;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
@@ -43,8 +88,9 @@ img {
 }
 
 .pic-box {
-  border-radius: 1px;
-  height: 12em;
+  border-radius: 4px;
+  height: 14em;
+  width: 90%;
   margin-bottom: 2em;
   background-color: #ffffff;
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.3);
@@ -57,21 +103,29 @@ img {
 }
 
 .pic-only {
-  float: left;
+  /*float: left;*/
+  border-radius: 4px 4px 0px 0px ;
   position: relative;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
   width: 100%;
   height: 70%;
+  cursor: pointer;
   /*border: 1px solid black; /*frame of the image*/
 
 }
 
 .pic-text {
+  color: slategrey;
+  font-weight: 600;
   height: 30%;
+  padding: 6px;
 }
 
+.pic-text:hover {
+  cursor: default;
+}
 
 .sb-link {
   color: #5eb95a;

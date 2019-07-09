@@ -1,0 +1,17 @@
+{% extends 'main_board/base.html' %}
+
+{% block title %}Picture Bazaar {% endblock %}
+
+{% block content %}
+
+        {% for image in images %}
+        <div class="col-lg-8">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}" style="max-width: 100%">
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+        {% endfor %}
+
+
+{% endblock %}
