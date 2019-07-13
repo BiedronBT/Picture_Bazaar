@@ -31,11 +31,27 @@
                         -->
                     </div>
                     <!-- Navbar Right Side -->
-                    <div class="navbar-nav">
+                    <div class="navbar-nav mr-5">
                         {% if user.is_authenticated %}
-                            <a class="nav-item nav-link" href="{% url 'main-board-upload' %}">Upload</a>
-                            <a class="nav-item nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
-                            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                            <a class="nav-item nav-link mr-3" href="{% url 'main-board-upload' %}">Upload</a>
+                            <div class="nav-item nav-link user-icon" style="background-image:url({{ user.profile.image.url }});">
+
+                                <div class="user-menu">
+
+                                        <a class="no-decoration" href="{% url 'profile' %}">
+                                            <div class="user-menu-item">
+                                                Edit Profile
+                                            </div>
+                                        </a>
+                                        <a class="no-decoration" href="{% url 'logout' %}">
+                                            <div class="user-menu-item">
+                                                Logout
+                                            </div>
+                                        </a>
+
+                                </div>
+
+                            </div>
                         {% else %}
                             <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                             <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
@@ -46,23 +62,11 @@
         </nav>
 	</header>
 
-    <main role="main" class="container-fluid mt-3">
+    <main role="main" class="container mt-3">
         <div class="row">
 
-            <div class="col-lg-2 col-md-8 col-sm-10 col-10 container">
-                <div class="my-sidebar">
-                    <a href="#" class="sb-link">Item One</a>
-                    <a href="#" class="sb-link">Item Two</a>
-                    <a href="#" class="sb-link">Item One</a>
-                    <a href="#" class="sb-link">Item Two</a>
-                    <a href="#" class="sb-link">Item One</a>
-                    <a href="#" class="sb-link">Item Two</a>
-                    <a href="#" class="sb-link">Item One</a>
-                    <a href="#" class="sb-link">Item Two</a>
-                </div>
-            </div>
 
-            <div class="col-lg-10 col-md-12 col-sm-12">
+            <div class="col-lg-12 col-md-12 col-sm-12">
 
                 <div class="row">
                     {% if messages %}

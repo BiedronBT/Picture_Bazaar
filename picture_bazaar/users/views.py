@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, EditUserForm, EditProfileForm
+from .models import Profile
 
 
 # Create your views here.
@@ -17,7 +18,15 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-def profile(request):
+def profile(request, id=None):
+    if id:
+        if id != request.user.id:
+            prof = Profile.objects.get(id=id)
+            user_form = EditUserForm(instance=request.user)
+            profile_form = EditProfileForm(instance=request.user.profile)
+            return render(request, 'users/profile.html', {'prof': prof, 'user_form': user_form, 'profile_form': profile_form})
+
+
     if request.method == 'POST':
         user_form = EditUserForm(request.POST, instance=request.user)
         profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.profile)

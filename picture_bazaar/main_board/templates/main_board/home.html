@@ -6,7 +6,7 @@
 {% block content %}
 
     {% for image in images %}
-        <div class="col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
 
             <div class="pic-box">
                 <a href="{% url 'image-detail' image.id %}">
@@ -18,18 +18,20 @@
                     <img src="{{ image.image.url }}">
                 </div>
                 -->
+
+                <h5>
+                    <a href="{% url 'image-detail' image.id %}" class="image-title">
+                        {{ image.title|capfirst|truncatechars:28 }}
+                    </a>
+                </h5>
                 <div class="pic-text">
-                    <h5>
-                        <a href="{% url 'image-detail' image.id %}" class="image-title">
-                            {{ image.title|capfirst|truncatechars:28 }}
-                        </a>
-                    </h5>
-                    <span class="author">By <a href="#">{{ image.author.username }}</a></span>
-                    <div class="">
-                        <span class="date-uploaded">{{ image.date|timesince|onlyfirst }} ago</span>
-                        <span class="dimensions">{{ image.width }} x {{ image.height }}</span>
-                    </div>
+                    <div>By <a href="{% url 'profile' image.author.id %}">{{ image.author.username }}</a></div>
+
+                    <div class="uploaded-ago">{{ image.date|timesince|onlyfirst }} ago</div>
+
+                    <div class="dimensions">{{ image.width }} x {{ image.height }}</div>
                 </div>
+
             </div>
         </div>
     {% endfor %}
