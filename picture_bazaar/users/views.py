@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, EditUserForm, EditProfileForm
 from .models import Profile
-
+from main_board.models import Picture
 
 # Create your views here.
 
@@ -20,11 +20,9 @@ def register(request):
 
 def profile(request, id=None):
     if id:
-        if id != request.user.id:
-            prof = Profile.objects.get(id=id)
-            user_form = EditUserForm(instance=request.user)
-            profile_form = EditProfileForm(instance=request.user.profile)
-            return render(request, 'users/profile.html', {'prof': prof, 'user_form': user_form, 'profile_form': profile_form})
+        profile = Profile.objects.get(id=id)
+        images = Picture.objects.filter(author=profile.user)
+        return render(request, 'users/profile.html', {'profile': profile, 'images': images})
 
 
     if request.method == 'POST':
@@ -39,4 +37,4 @@ def profile(request, id=None):
     user_form = EditUserForm(instance=request.user)
     profile_form = EditProfileForm(instance=request.user.profile)
 
-    return render(request, 'users/profile.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'users/edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})

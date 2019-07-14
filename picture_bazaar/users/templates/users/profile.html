@@ -1,29 +1,22 @@
-{% extends "main_board/base.html" %}
+{% extends "main_board/home.html" %}
 {% load crispy_forms_tags %}
-
 
 {% block title %}
     Picture Bazaar - {{ user.username }}
 {% endblock %}
 
-{% block content %}
-	<div class="col-lg-6 col-md-6 col-sm-8 mx-auto form-box">
-        <h2 class="mb-1">Profile</h2>
-        <img src="{{ user.profile.image.url }}" class="mb-3 profile-img">
-        <form method="Post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group my-form">
-                {{ user_form|crispy }}
-                {{ profile_form|crispy }}
-            </fieldset>
-
-            <div class="form-group">
-                <button class="btn btn-info" type="submit">Update</button>
+{% block profile %}
+    <div class="col-lg-3"></div>
+        <div class="col-lg-6 col-md-6 col-sm-8 mx-auto form-box">
+            <div class="row">
+                <div class="col-4">
+                    <div class="profile-img" style="background-image:url({{ profile.image.url }});"></div>
+                </div>
+                <div class="col-8 mt-5">
+                    <h3 style="text-align:center">{{ profile.user.username }}</h3>
+                </div>
             </div>
-        </form>
+        </div>
+    <div class="col-lg-3"></div>
 
-    </div>
-    {% if prof %}
-        <h1>{{ prof.user.username }}  </h1>
-    {% endif %}
-{% endblock content %}
+{% endblock %}

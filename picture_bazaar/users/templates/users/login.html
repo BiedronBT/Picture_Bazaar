@@ -7,14 +7,14 @@
 
 {% block content %}
 	<div class="col-lg-4 col-md-6 col-sm-8 col-10 mt-5 mx-auto form-box">
+        <h2>Log In</h2>
         <form method="Post">
             {% csrf_token %}
-            <fieldset class="form-group my-form">
-                <h2 class="mb-5">Log In</h2>
+            <fieldset class="my-form">
                 {{ form|crispy }}
             </fieldset>
-            <div class="form-group">
-                <button style="margin-left:auto;margin-right:auto;display:block" class="btn btn-info" type="submit">Login</button>
+            <div>
+                <button class="button-submit" type="submit">Login</button>
             </div>
         </form>
 

@@ -4,35 +4,24 @@
 {% block title %}Picture Bazaar - Home{% endblock %}
 
 {% block content %}
-
+    {% block profile %}
+    {% endblock %}
     {% for image in images %}
-        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
-
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mt-3 mb-4">
             <div class="pic-box">
                 <a href="{% url 'image-detail' image.id %}">
                     <div class="pic-only" style="background-image:url({{ image.image.url }});">
                     </div>
                 </a>
-                <!--
-                <div class="pic-only">
-                    <img src="{{ image.image.url }}">
-                </div>
-                -->
-
                 <h5>
                     <a href="{% url 'image-detail' image.id %}" class="image-title">
-                        {{ image.title|capfirst|truncatechars:30 }}
+                        {{ image.title|capfirst|truncatechars:40 }}
                     </a>
                 </h5>
-
-                <div>By <a href="{% url 'profile' image.author.id %}">{{ image.author.username }}</a></div>
-
+                <div>By <a href="{% url 'profile' image.author.profile.id %}">{{ image.author.username }}</a></div>
                 <div class="uploaded-ago">{{ image.date|timesince|onlyfirst }} ago</div>
-
                 <div class="dimensions">{{ image.width }} x {{ image.height }}</div>
-
             </div>
         </div>
     {% endfor %}
-
 {% endblock %}

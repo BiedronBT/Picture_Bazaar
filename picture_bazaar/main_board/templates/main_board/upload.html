@@ -6,16 +6,16 @@
 {% endblock %}
 
 {% block content %}
-	<div class="col-lg-4 col-md-6 col-sm-8 mx-auto my-form">
+	<div class="col-lg-5 col-md-6 col-sm-8 mx-auto form-box">
 
         <form method="Post" enctype="multipart/form-data">
             {% csrf_token %}
-            <fieldset class="form-group">
+            <fieldset class="my-form">
                 <h1 class="mb-5">Upload Picture</h1>
                 {{ form|crispy }}
             </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Upload</button>
+            <div>
+                <button class="button-submit" type="submit">Upload</button>
             </div>
         </form>
 

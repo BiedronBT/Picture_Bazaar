@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Picture
 from .forms import UploadPictureForm
@@ -11,13 +11,19 @@ def home(request):
     return render(request, 'main_board/home.html', {'images': images})
 
 
-def imageDetail(request, pk):
-    image = Picture.objects.filter(id=pk)
-    print(image)
-    return render(request, 'main_board/image_detail.html', {'images': image})
+def uploaded_pictures(request):
+
+    images = Picture.objects.filter(author=request.user)
+    return render(request, 'main_board/home.html', {'images': images})
 
 
-def uploadPicture(request):
+def image_detail(request, pk):
+
+    image = get_object_or_404(Picture, id=pk)
+    return render(request, 'main_board/image_detail.html', {'image': image})
+
+
+def upload_picture(request):
 
     if request.method == 'POST':
         form = UploadPictureForm(request.POST, request.FILES)

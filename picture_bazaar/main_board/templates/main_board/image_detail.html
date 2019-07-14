@@ -4,29 +4,21 @@
 
 {% block content %}
 
-    {% for image in images %}
-        <div class="col-9">
-            <h2>{{ image.title|capfirst }}</h2>
-        </div>
+    <div class="col-lg-9">
+        <h2>{{ image.title|capfirst }}</h2>
+    </div>
 
-        <div class="col-lg-9 mt-1">
+    <div class="col-lg-9 mt-1" style="padding-right:0">
+        <img class="detail-pic" src="{{ image.image.url }}">
+    </div>
+    <div class="col-lg-3 mt-1">
+        <div class="form-box">
+            <div class="user-icon" style="background-image:url({{ image.author.profile.image.url }});"></div>
+            <h5>{{ image.author.username }}</h5>
             <div>
-
-            </div>
-            <img class="detail-pic-only" src="{{ image.image.url }}">
-        </div>
-        <div class="col-lg-3 mt-1">
-            <div class="detail-pic-text">
-                <div class="detail-author">
-                    <h5>{{ image.author.username }}</h5>
-                </div>
-                <div>
-                    {{ image.width }}
-                </div>
+                {{ image.width }} x {{ image.height }}
             </div>
         </div>
-
-
-    {% endfor %}
+    </div>
 
 {% endblock %}
