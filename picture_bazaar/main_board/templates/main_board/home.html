@@ -21,16 +21,15 @@
 
                 <h5>
                     <a href="{% url 'image-detail' image.id %}" class="image-title">
-                        {{ image.title|capfirst|truncatechars:28 }}
+                        {{ image.title|capfirst|truncatechars:30 }}
                     </a>
                 </h5>
-                <div class="pic-text">
-                    <div>By <a href="{% url 'profile' image.author.id %}">{{ image.author.username }}</a></div>
 
-                    <div class="uploaded-ago">{{ image.date|timesince|onlyfirst }} ago</div>
+                <div>By <a href="{% url 'profile' image.author.id %}">{{ image.author.username }}</a></div>
 
-                    <div class="dimensions">{{ image.width }} x {{ image.height }}</div>
-                </div>
+                <div class="uploaded-ago">{{ image.date|timesince|onlyfirst }} ago</div>
+
+                <div class="dimensions">{{ image.width }} x {{ image.height }}</div>
 
             </div>
         </div>
