@@ -7,11 +7,10 @@
 
 {% block content %}
 	<div class="col-lg-5 col-md-6 col-sm-8 mx-auto form-box">
-
+        <h2>Upload Picture</h2>
         <form method="Post" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="my-form">
-                <h1 class="mb-5">Upload Picture</h1>
                 {{ form|crispy }}
             </fieldset>
             <div>

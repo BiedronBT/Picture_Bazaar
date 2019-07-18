@@ -19,67 +19,61 @@
 
 <body>
     <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top my-navbar">
-            <div class="container-fluid">
-
-                <a class="navbar-brand logo ml-5" href="{% url 'main-board-home' %}">Picture Bazaar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarToggle">
-                    <div class="navbar-nav mr-auto">
-                        <!--
-                        <a class="nav-item nav-link" href="#">Home</a>
-                        <a class="nav-item nav-link" href="#">About</a>
-                        -->
-                    </div>
-                    <!-- Navbar Right Side -->
-                    <div class="navbar-nav mr-5">
-                        {% if user.is_authenticated %}
-
-                            <div class="nav-item nav-link user-icon" style="background-image:url({{ user.profile.image.url }});">
-
-                                <div class="user-menu">
-                                        <a class="no-decoration" href="{% url 'main-board-upload' %}">
-                                            <div class="user-menu-item">
-                                                Upload Picture
-                                            </div>
-                                        </a>
-                                        <a class="no-decoration" href="{% url 'main-board-uploaded' %}">
-                                            <div class="user-menu-item">
-                                                My Pictures
-                                            </div>
-                                        </a>
-                                        <a class="no-decoration" href="{% url 'profile' %}">
-                                            <div class="user-menu-item">
-                                                Edit Profile
-                                            </div>
-                                        </a>
-                                        <a class="no-decoration" href="{% url 'logout' %}">
-                                            <div class="user-menu-item">
-                                                Logout
-                                            </div>
-                                        </a>
-
-                                </div>
-
+    <nav class="navbar navbar-expand-md fixed-top my-navbar my-navbar">
+        <a class="navbar-brand logo ml-3" href="{% url 'board' %}">Picture Bazaar</a>
+        <div class="d-flex flex-row order-2 order-md-3">
+                {% if user.is_authenticated %}
+                <div class="navbar-nav flex-row user-icon mr-3 ml-3" style="background-image:url({{ user.profile.image.url }});">
+                    <div class="user-menu">
+                        <a class="no-decoration" href="{% url 'image-upload' %}">
+                            <div class="user-menu-item">
+                                Upload Picture
                             </div>
-                        {% else %}
-                            <a class="nav-item nav-link" href="{% url 'login' %}">Sign In</a>
-                            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
-                        {% endif %}
+                        </a>
+                        <a class="no-decoration" href="{% url 'board-uploaded' %}">
+                            <div class="user-menu-item">
+                                My Pictures
+                            </div>
+                        </a>
+                        <a class="no-decoration" href="{% url 'profile' %}">
+                            <div class="user-menu-item">
+                                Edit Profile
+                            </div>
+                        </a>
+                        <a class="no-decoration" href="{% url 'logout' %}">
+                            <div class="user-menu-item">
+                                Logout
+                            </div>
+                        </a>
                     </div>
                 </div>
+                {% endif %}
+            <div class="navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
-        </nav>
-	</header>
+        </div>
+        <div class="collapse navbar-collapse order-3 order-md-2" id="navbarNavDropdown">
+            <form action="{% url 'image-upload' %}">
+                <input type="search" name="q">
+            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mx-auto"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item mx-auto"><a class="nav-link" href="#">Features</a></li>
+                <li class="nav-item mx-auto"><a class="nav-link" href="#">Pricing</a></li>
+                {% if not user.is_authenticated %}
+                <li class="nav-item mx-auto"><a class="nav-link" href="{% url 'login' %}">Sign In</a></li>
+                <li class="nav-item mx-auto"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    </header>
 
     <main role="main" class="container mt-3">
         <div class="row">
-
-
             <div class="col-lg-12 col-md-12 col-sm-12">
-
                 <div class="row">
                     {% if messages %}
                         {% for message in messages %}
@@ -89,16 +83,13 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-
                 <div class="row">
                     {% block content %}
                     {% endblock %}
                 </div>
             </div>
-
         </div>
     </main>
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

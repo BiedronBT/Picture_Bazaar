@@ -1,13 +1,27 @@
 body {
   font-family: Barlow, Times, serif, "Times New Roman";
-  background-color: #f6f8f6;
+  background-color: floralwhite/*#f6f8f6*/;
   margin-top: 5em;
   padding: 0.5em;
 }
 
+hr {
+  margin: 12px 30px 8px;
+  background-color: peachpuff;
+}
+
 .logo {
+  color: #ffffff;
   font-family: Lobster;
   font-size: 40px;
+  line-height: 40px;
+  vertical-align: center;
+  transition: 1s;
+}
+
+.logo:hover {
+  color: #ffffff;
+  transform: scale(1.03);
 }
 
 img {
@@ -31,25 +45,26 @@ h5 {
   color: slategrey;
   font-size: 17px;
   font-weight: 500;
-  margin: 5px;
+  margin: 8px 5px 8px;
 }
 
 .button-submit {
   font-size: 18px;
-  color: white;
+  font-weight: 500;
+  color: #ffffff;
   background-color: mediumseagreen;
   border: 1px solid white;
-  border-radius: 6px;
-  padding: 6px 14px;
+  border-radius: 8px;
+  padding: 6px 14px 8px;
   margin-left:auto;
   margin-right:auto;
   display:block;
   shadow: none;
-  transition: 0.5s;
+  transition: 0.6s;
 }
 
 .button-submit:hover {
-  background-color: seagreen;
+  background-color: lightseagreen;
 }
 
 .user-icon {
@@ -102,20 +117,11 @@ h5 {
   text-decoration: none;
 }
 
-
-.pic-box > div {
-  font-weight: 700;
-  font-size: 11px;
-  color: slategrey;
-}
-
 .my-navbar {
   font-family: Arial;
-  /*background-color: #339922;*/
   background-image: linear-gradient(mediumseagreen, seagreen);
-  height: 4em;
   border-bottom: 2px solid green;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .form-box {
@@ -123,7 +129,7 @@ h5 {
   background: #e7f8e3;
   text-align: left;
   border-radius: 6px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .my-form {
@@ -140,7 +146,7 @@ h5 {
 .my-sidebar {
   text-align: center;
   border-radius: 6px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .content-section {
@@ -153,27 +159,29 @@ h5 {
 }
 
 .pic-box {
+  font-weight: 700;
+  font-size: 11px;
+  color: slategrey;
   border-radius: 4px;
-  width: 90%;
-  margin-bottom: 2em;
+  margin: 10px 5px 10px;
   background-color: #fcfcfc;
   padding: 15px 8px 8px;
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
 .pic-box:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
   box-shadow: 0px 10px 14px 0px rgba(0, 0, 0, 0.18);
 }
 
 .pic-only {
-  border-radius: 4px 4px 4px 4px ;
+  border-radius: 3px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
   width: 100%;
-  height: 9em;
+  height: 140px;
 }
 
 
@@ -188,11 +196,6 @@ h5 {
   text-align:right;
 }
 
-.pic-text:hover {
-  cursor: default;
-}
-
-
 .detail-pic {
   display: block;
   border-radius: 5px;
@@ -200,29 +203,44 @@ h5 {
   margin-right: auto;
   max-width: 100%;
   max-height: 40em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.25), 0 10px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
-.detail-pic-text {
-  background-color: #ffffff;
+.detail-pic-specs {
+  padding: 30px 15px 30px;
+  border-radius: 5px;
   color: slategrey;
+  font-size: 16px;
   font-weight: 600;
-  width: 100%;
-  height: 25em;
-  padding: 6px;
-  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  background-color: #e7f8e3;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pic-tag {
+  font-size: 12px;
+  display: inline-block;
+  padding: 0 10px 2px;
+  margin-top: 5px;
+  border-radius: 20px 20px 20px 20px;
+  color: #ffffff;
+  background-image: linear-gradient(70deg, lightcoral, lightsalmon);
+
+}
+
+.spec {
+  font-size: 13px;
+  color: slategrey;
 }
 
 
-.sb-link {
-  color: #5eb95a;
-  display: block;
-  margin: 20px 0 20px 0;
-  transition: 1s ease;
+.profile-link {
+  color: lightsalmon;
+  transition: 0.5s;
 }
 
-.sb-link:hover {
-  color: #005500;
+.profile-link:hover {
+  color: lightsalmon;
   text-decoration: none;
 }
 
