@@ -14,6 +14,12 @@ def home(request, tag=None):
         images = Picture.objects.all().order_by('-date')[:20]
         return render(request, 'main_board/home.html', {'images': images, 'header': header})
 
+def filter_images(request):
+    keyword = request.GET['q']
+    header = f'Search results for "{keyword}"'
+    images = Picture.objects.filter(title__icontains=keyword)
+    return render(request, 'main_board/home.html', {'images': images, 'header': header})
+
 
 def uploaded_pictures(request):
     images = Picture.objects.filter(author=request.user).order_by('-date')
@@ -27,7 +33,6 @@ def image_detail(request, pk):
 
 
 def upload_picture(request):
-
     if request.method == 'POST':
         form = UploadPictureForm(request.POST, request.FILES)
         if form.is_valid():

@@ -55,10 +55,13 @@
             </div>
         </div>
         <div class="collapse navbar-collapse order-3 order-md-2" id="navbarNavDropdown">
-            <form action="{% url 'image-upload' %}">
-                <input type="search" name="q">
-            </form>
+
             <ul class="navbar-nav ml-auto">
+                <li class="mx-auto">
+                    <form action="{% url 'filter' %}" class="">
+                        <input type="search" name="q" placeholder="Search">
+                    </form>
+                </li>
                 <li class="nav-item mx-auto"><a class="nav-link" href="#">Home</a></li>
                 <li class="nav-item mx-auto"><a class="nav-link" href="#">Features</a></li>
                 <li class="nav-item mx-auto"><a class="nav-link" href="#">Pricing</a></li>
