@@ -6,11 +6,11 @@
 {% block content %}
     {% block profile %}
     {% endblock %}
-    <div class="col-12 mx-auto">
+    <div class="col-12">
         <h2>{{ header }}</h2>
     </div>
     {% for image in images %}
-        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mx-auto mt-3">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mt-3">
             <div class="pic-box">
                 <a href="{% url 'image-detail' image.id %}">
                     <div class="pic-only" style="background-image:url({{ image.image.url }});">

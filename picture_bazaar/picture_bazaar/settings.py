@@ -128,7 +128,7 @@ INTERNAL_IPS = ['127.0.0.1']
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'main-board-home'
+LOGIN_REDIRECT_URL = 'board'
 
 LOGIN_URL = 'login'
 

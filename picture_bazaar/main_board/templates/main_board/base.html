@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <header class="site-header">
+    <header class="site-header mb-5">
     <nav class="navbar navbar-expand-md fixed-top my-navbar my-navbar">
         <a class="navbar-brand logo ml-3" href="{% url 'board' %}">Picture Bazaar</a>
         <div class="d-flex flex-row order-2 order-md-3">
@@ -62,8 +62,6 @@
                         <input type="search" name="q" placeholder="Search">
                     </form>
                 </li>
-                <li class="nav-item mx-auto"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item mx-auto"><a class="nav-link" href="#">Features</a></li>
                 <li class="nav-item mx-auto"><a class="nav-link" href="#">Pricing</a></li>
                 {% if not user.is_authenticated %}
                 <li class="nav-item mx-auto"><a class="nav-link" href="{% url 'login' %}">Sign In</a></li>

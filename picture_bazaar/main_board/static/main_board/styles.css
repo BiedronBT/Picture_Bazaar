@@ -1,13 +1,13 @@
 body {
   font-family: Barlow, Times, serif, "Times New Roman";
-  background-color: floralwhite/*#f6f8f6*/;
+  background-color: seashell;
   margin-top: 5em;
   padding: 0.5em;
 }
 
 hr {
-  margin: 12px 30px 8px;
-  background-color: peachpuff;
+  margin: 12px 10px 8px;
+  background-color: lightgrey;
 }
 
 .logo {
