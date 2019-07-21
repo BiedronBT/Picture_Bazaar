@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{% static 'main_board/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main_board/fontello-c2512241/css/fontello.css' %}">
+
 
     <link href="https://fonts.googleapis.com/css?family=Barlow:200,400,500,700,900&display=swap&subset=latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap&subset=latin-ext" rel="stylesheet">
@@ -25,12 +27,12 @@
                 {% if user.is_authenticated %}
                 <div class="navbar-nav flex-row user-icon mr-3 ml-3" style="background-image:url({{ user.profile.image.url }});">
                     <div class="user-menu">
-                        <a class="no-decoration" href="{% url 'image-upload' %}">
+                        <a class="no-decoration" href="{% url 'upload-image' %}">
                             <div class="user-menu-item">
                                 Upload Picture
                             </div>
                         </a>
-                        <a class="no-decoration" href="{% url 'board-uploaded' %}">
+                        <a class="no-decoration" href="{% url 'profile' user.id %}">
                             <div class="user-menu-item">
                                 My Pictures
                             </div>

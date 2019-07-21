@@ -4,7 +4,7 @@ from .models import Picture
 from .forms import UploadPictureForm
 
 
-def home(request, tag=None):
+def board(request, tag=None):
     if tag:
         images = Picture.objects.filter(tags__icontains=tag).order_by('-date')[:20]
         header = f'Images with "{tag}" tag'
@@ -26,13 +26,13 @@ def uploaded_pictures(request):
     return render(request, 'main_board/home.html', {'images': images})
 
 
-def image_detail(request, pk):
+def detail_image(request, pk):
     image = get_object_or_404(Picture, id=pk)
     tags = image.tags.split(',')
     return render(request, 'main_board/image_detail.html', {'image': image, 'tags': tags})
 
 
-def upload_picture(request):
+def upload_image(request):
     if request.method == 'POST':
         form = UploadPictureForm(request.POST, request.FILES)
         if form.is_valid():
@@ -43,3 +43,12 @@ def upload_picture(request):
     else:
         form = UploadPictureForm()
         return render(request, 'main_board/upload.html', {'form': form})
+
+
+def edit_image(request, picture=None):
+    if request.method == 'GET':
+        if request.user == Picture.objects.get(id=picture).author:
+            form = UploadPictureForm(instance=Picture.objects.get(id=picture))
+            return render(request, 'main_board/upload.html', {'form': form})
+        else:
+            return redirect('/')
