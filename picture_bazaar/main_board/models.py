@@ -14,3 +14,8 @@ class Picture(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ForeignKey(Picture, on_delete=models.CASCADE)

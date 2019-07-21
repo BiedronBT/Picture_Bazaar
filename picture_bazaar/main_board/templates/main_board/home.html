@@ -26,7 +26,15 @@
                 <div class="dimensions">{{ image.width }} x {{ image.height }}</div>
                 <div class="uploaded-ago">{{ image.date|timesince|onlyfirst }} ago</div>
                 <div class="dimensions">
-                    <a href="#" title="Add to favorites"><i class="icon-star fav-icon"></i></a>
+                    {% if image in favorites %}
+                    <a href="{% url 'favorite-image' image.id %}" title="Add to favorites">
+                        <i class="icon-star fav-icon" style="color:gold"></i>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'favorite-image' image.id %}" title="Add to favorites">
+                        <i class="icon-star fav-icon"></i>
+                    </a>
+                    {% endif %}
                     {% if user == image.author %}
                     <a href="{% url 'edit-image' image.id %}"><i class="icon-pencil-squared edit-icon"></i></a>
                     <a href="#"><i class="icon-cancel-circled delete-icon"></i></a>
