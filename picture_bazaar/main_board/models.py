@@ -10,12 +10,9 @@ class Picture(models.Model):
     width = models.IntegerField(auto_created=True)
     height = models.IntegerField(auto_created=True)
     image = models.ImageField(width_field='width', height_field='height', upload_to='images')
-    tags = models.TextField()
+    tags = models.CharField(max_length=100)
+    favorites = models.ManyToManyField(User, related_name='favorites', blank=True)
 
     def __str__(self):
         return self.title
 
-
-class Favorite(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ForeignKey(Picture, on_delete=models.CASCADE)

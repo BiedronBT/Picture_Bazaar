@@ -1,33 +1,32 @@
 {% extends 'main_board/base.html' %}
 {% load main_board_extras %}
 {% load static %}
+
 {% block title %}Picture Bazaar - Home{% endblock %}
 
 {% block content %}
     {% block profile %}
     {% endblock %}
-    <div class="col-4">
+    <div class="col-12 mx-auto">
         <h2>{{ header }}</h2>
     </div>
-    <div class="col-8"></div>
     {% for image in images %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6 mt-3">
             <div class="pic-box">
                 <a href="{% url 'detail-image' image.id %}">
-                    <div class="pic-only" style="background-image:url({{ image.image.url }});">
-                    </div>
+                    <div class="pic-only" style="background-image:url({{ image.image.url }});"></div>
                 </a>
                 <h5>
                     <a href="{% url 'detail-image' image.id %}" class="image-title">
                         {{ image.title|capfirst|truncatechars:30 }}
                     </a>
                 </h5>
-                <div class="uploaded-ago">By <a href="{% url 'profile' image.author.profile.id %}" class="profile-link">{{ image.author.username }}</a></div>
-                <div class="dimensions">{{ image.width }} x {{ image.height }}</div>
-                <div class="uploaded-ago">{{ image.date|timesince|onlyfirst }} ago</div>
-                <div class="dimensions">
+                <div class="pic-box-left">By <a href="{% url 'profile' image.author.profile.id %}" class="profile-link">{{ image.author.username }}</a></div>
+                <div class="pic-box-right">{{ image.width }} x {{ image.height }}</div>
+                <div class="pic-box-left">{{ image.date|timesince|onlyfirst }} ago</div>
+                <div class="pic-box-right">
                     {% if image in favorites %}
-                    <a href="{% url 'favorite-image' image.id %}" title="Add to favorites">
+                    <a href="{% url 'favorite-image' image.id %}" title="Remove from favorites">
                         <i class="icon-star fav-icon" style="color:gold"></i>
                     </a>
                     {% else %}
@@ -36,8 +35,12 @@
                     </a>
                     {% endif %}
                     {% if user == image.author %}
-                    <a href="{% url 'edit-image' image.id %}"><i class="icon-pencil-squared edit-icon"></i></a>
-                    <a href="#"><i class="icon-cancel-circled delete-icon"></i></a>
+                    <a href="{% url 'edit-image' image.id %}" title="Edit picture">
+                        <i class="icon-pencil-squared edit-icon"></i>
+                    </a>
+                    <a href="#" title="Delete picture">
+                        <i class="icon-cancel-circled delete-icon"></i>
+                    </a>
                     {% endif %}
                 </div>
             </div>

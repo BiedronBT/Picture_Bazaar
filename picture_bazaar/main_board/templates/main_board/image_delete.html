@@ -1,0 +1,43 @@
+{% extends 'main_board/base.html' %}
+{% load static %}
+{% block title %}Picture Bazaar - {{ image.title|capfirst }}{% endblock %}
+
+{% block content %}
+
+    <div class="col-lg-9">
+        <h2>{{ image.title|capfirst }}</h2>
+    </div>
+    <div class="col-lg-9 mt-1 mb-1">
+        <img class="detail-pic" src="{{ image.image.url }}">
+    </div>
+    <div class="col-lg-3 mt-1">
+        <div class="detail-pic-specs">
+
+            <div>
+                <div class="mx-auto">
+                    <div class="user-icon mx-auto" style="background-image:url({{ image.author.profile.image.url }});"></div>
+                    <div><a href="{% url 'profile' image.author.profile.id %}" class="profile-link" style="font-size:18px">{{ image.author.username }}</a></div>
+                </div>
+                <hr>
+                <div>Date: <div class="spec">{{ image.date|date:'d M Y' }}</div></div>
+                <hr>
+                <div>Size: <div class="spec">{{ image.width }} x {{ image.height }}</div></div>
+                <hr>
+                <div>
+                    <div class="mb-2">Tags: </div>
+                    {% for tag in tags %}
+                        <a href="{% url 'board-bytag' tag %}">
+                            <span class="pic-tag">
+                                    {{ tag }}
+                            </span>
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="mt-5">
+                    <button type="submit" class="button-submit">Get for <img src="{% static 'main_board/coin.png' %}" height="25" width="25"> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

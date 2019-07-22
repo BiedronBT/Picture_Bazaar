@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.contrib.auth.models import AnonymousUser
-from django.http import HttpResponseRedirect
 from django.contrib import messages
-from .models import Picture, Favorite
-from .forms import UploadPictureForm
+from .models import Picture
+from .forms import UploadPictureForm, EditPictureForm
 
 
 def board(request, tag=None):
     if request.user.is_authenticated:
-        favorites = [x.image for x in Favorite.objects.filter(user=request.user)]
+        favorites = request.user.favorites.all()
     else:
         favorites = []
 
@@ -29,8 +27,8 @@ def filter_images(request):
     return render(request, 'main_board/home.html', {'images': images, 'header': header})
 
 
-def detail_image(request, pk):
-    image = get_object_or_404(Picture, id=pk)
+def detail_image(request, picture_id):
+    image = get_object_or_404(Picture, id=picture_id)
     tags = image.tags.split(',')
     return render(request, 'main_board/image_detail.html', {'image': image, 'tags': tags})
 
@@ -48,21 +46,33 @@ def upload_image(request):
         return render(request, 'main_board/upload.html', {'form': form})
 
 
-def edit_image(request, picture=None):
-    if request.method == 'GET':
-        if request.user == Picture.objects.get(id=picture).author:
-            form = UploadPictureForm(instance=Picture.objects.get(id=picture))
-            return render(request, 'main_board/upload.html', {'form': form})
+def edit_image(request, picture_id):
+    if request.user == Picture.objects.get(id=picture_id).author:
+        if request.method == 'POST':
+            image = Picture.objects.get(id=picture_id)
+            form = EditPictureForm(request.POST, instance=image)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Image updated')
+                return redirect(reverse('detail-image', kwargs={'picture_id': picture_id}))
         else:
-            return redirect('/')
+            form = EditPictureForm(instance=Picture.objects.get(id=picture_id))
+            image = Picture.objects.get(id=picture_id)
+            return render(request, 'main_board/image_edit.html', {'form': form, 'image': image})
+    else:
+        return redirect('/')
 
 
-def favorite_image(request, id=None):
-    try:
-        image = Favorite.objects.get(image__id=id)
-        image.delete()
+def delete_image(request, picture_id):
+    pass
+
+
+
+def mark_as_favorite(request, picture_id):
+    image = get_object_or_404(Picture, id=id)
+    if image.favorites.filter(id=request.user.id):
+        image.favorites.remove(request.user)
         return redirect(reverse('board'))
-    except:
-        image = Favorite.objects.create(user=request.user, image=Picture.objects.get(id=id))
-        image.save()
+    else:
+        image.favorites.add(request.user)
         return redirect(reverse('board'))
