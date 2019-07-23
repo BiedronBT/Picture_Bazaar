@@ -6,7 +6,7 @@ body {
 }
 
 hr {
-  margin: 12px 10px 8px;
+  margin: 12px 3px 8px;
   background-color: lightgrey;
 }
 
@@ -48,23 +48,38 @@ h5 {
   margin: 8px 5px 8px;
 }
 
-.button-submit {
+.button {
   font-size: 18px;
   font-weight: 500;
-  color: #ffffff;
-  background-color: mediumseagreen;
-  border: 1px solid white;
-  border-radius: 8px;
+  border-radius: 10px;
+  border: none;
   padding: 6px 14px 8px;
-  margin-left:auto;
-  margin-right:auto;
-  display:block;
-  shadow: none;
-  transition: 0.6s;
+  transition: 0.2s;
 }
 
-.button-submit:hover {
-  background-color: seagreen;
+.button-green {
+  color: #eeeeee;
+  background-color: #3cb371;
+  box-shadow: 0px 3px 2px 2px rgba(20, 130, 90, 1);
+}
+
+.button-green:hover {
+  color: #ffffff;
+  background-color: #2ca361;
+  box-shadow: 0px 2px 1px 0px rgba(20, 150, 120, 1);
+}
+
+.button-red {
+  color: #eeeeee;
+  background-color: #fe6347;
+  box-shadow: 0px 3px 2px 2px rgba(180, 70, 60, 1);
+  padding: 6px 14px 8px;
+}
+
+.button-red:hover {
+  color: #ffffff;
+  background-color: #ee5337;
+  box-shadow: 0px 2px 1px 0px rgba(180, 70, 60, 1);
 }
 
 .user-icon {

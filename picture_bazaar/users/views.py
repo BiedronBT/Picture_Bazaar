@@ -18,12 +18,11 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-def profile(request, id=None):
-    if id:
-        profile = Profile.objects.get(id=id)
+def profile(request, profile_id=None):
+    if profile_id:
+        profile = Profile.objects.get(id=profile_id)
         images = Picture.objects.filter(author=profile.user)
         return render(request, 'users/profile.html', {'profile': profile, 'images': images})
-
 
     if request.method == 'POST':
         user_form = EditUserForm(request.POST, instance=request.user)
@@ -33,8 +32,7 @@ def profile(request, id=None):
             profile_form.save()
             messages.success(request, 'Your account has been updated.')
             return redirect('profile')
-
-    user_form = EditUserForm(instance=request.user)
-    profile_form = EditProfileForm(instance=request.user.profile)
-
-    return render(request, 'users/edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})
+    else:
+        user_form = EditUserForm(instance=request.user)
+        profile_form = EditProfileForm(instance=request.user.profile)
+        return render(request, 'users/edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})
