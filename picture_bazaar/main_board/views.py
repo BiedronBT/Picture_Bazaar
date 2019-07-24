@@ -16,7 +16,7 @@ def board(request):
     #     header = f'Images with "{tag}" tag'
     #     return render(request, 'main_board/home.html', {'images': images, 'header': header, 'favorites': favorites})
     header = 'Most recent images'
-    images = Picture.objects.all().order_by('-date')
+    images = Picture.objects.all().order_by('-date')[:21]
 
     return render(request, 'main_board/home.html', {'images': images, 'header': header, 'favorites': favorites})
 

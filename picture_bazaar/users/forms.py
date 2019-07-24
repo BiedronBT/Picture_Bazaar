@@ -35,4 +35,4 @@ class EditProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['image', 'first_name', 'last_name', 'country']

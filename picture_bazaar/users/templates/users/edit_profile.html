@@ -9,12 +9,14 @@
 {% block content %}
 	<div class="col-lg-5 col-md-6 col-sm-8 mx-auto form-box">
         <div class="row">
-            <div class="col-4">
+            <div class="col-1"></div>
+            <div class="col-3">
                 <div class="profile-img" style="background-image:url({{ user.profile.image.url }});"></div>
             </div>
-            <div class="col-8 mt-5">
+            <div class="col-7 mt-5">
                 <h3 style="text-align:center">{{ user.username }}</h3>
             </div>
+            <div class="col-1"></div>
         </div>
         <form method="Post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -28,7 +30,5 @@
             </div>
         </form>
     </div>
-    {% if prof %}
-        <h1>{{ prof.user.username }}  </h1>
-    {% endif %}
+
 {% endblock content %}
