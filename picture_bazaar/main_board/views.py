@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.http import HttpResponseRedirect
+from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Picture
@@ -6,25 +8,16 @@ from .forms import UploadPictureForm, EditPictureForm
 
 
 def board(request):
-    if request.user.is_authenticated:
-        favorites = request.user.favorites.all()
-    else:
-        favorites = []
 
-    # if tag:
-    #     images = Picture.objects.filter(tags__icontains=tag).order_by('-date')[:20]
-    #     header = f'Images with "{tag}" tag'
-    #     return render(request, 'main_board/home.html', {'images': images, 'header': header, 'favorites': favorites})
     header = 'Most recent images'
     images = Picture.objects.all().order_by('-date')[:21]
-
-    return render(request, 'main_board/home.html', {'images': images, 'header': header, 'favorites': favorites})
+    return render(request, 'main_board/home.html', {'images': images, 'header': header})
 
 
 def filter_images(request):
     keyword = request.GET['q']
     header = f'Search results for "{keyword}"'
-    images = Picture.objects.filter(title__icontains=keyword)
+    images = Picture.objects.filter(Q(title__icontains=keyword)|Q(tags__icontains=keyword))
     return render(request, 'main_board/home.html', {'images': images, 'header': header})
 
 
@@ -85,10 +78,10 @@ def mark_as_favorite(request, picture_id):
         image = get_object_or_404(Picture, id=picture_id)
         if image.favorites.filter(id=request.user.id):
             image.favorites.remove(request.user)
-            return redirect(reverse('board'))
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
             image.favorites.add(request.user)
-            return redirect(reverse('board'))
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         messages.success(request, 'You need to be logged in to add images to favorites')
         return redirect(reverse('login'))
