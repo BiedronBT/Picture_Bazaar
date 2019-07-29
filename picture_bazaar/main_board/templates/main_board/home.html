@@ -11,38 +11,56 @@
         <h2>{{ header }}</h2>
     </div>
     {% for image in images %}
-        <div class="{% cycle 'col-lg-3 col-md-6 col-6' 'col-lg-3 col-md-6 col-6' 'col-lg-3 col-md-4 col-6' 'col-lg-3 col-md-4 col-6' 'col-lg-4 col-md-4 col-6' 'col-lg-4 col-md-6 col-6' 'col-lg-4 col-md-6 col-6' %}">
-            <div class="pic-box">
-                <a href="{% url 'detail-image' image.id %}">
-                    <div class="pic-only" style="background-image:url({{ image.image.url }});"></div>
-                <h5>
-                    <a href="{% url 'detail-image' image.id %}" class="image-title">
-                        {{ image.title|capfirst|truncatechars:30 }}
-                    </a>
-                </h5>
-                <div class="pic-box-left">By <a href="{% url 'profile' image.author.profile.id %}" class="profile-link">{{ image.author.username }}</a></div>
-                <div class="pic-box-right">{{ image.width }} x {{ image.height }}</div>
-                <div class="pic-box-left">{{ image.date|timesince|onlyfirst }} ago</div>
-                <div class="pic-box-right">
-                    {% if user in image.favorites.all %}
-                    <a href="{% url 'favorite-image' image.id %}" title="Remove from favorites">
-                        <i class="icon-star fav-icon" style="color:gold"></i>
-                    </a>
-                    {% else %}
-                    <a href="{% url 'favorite-image' image.id %}" title="Add to favorites">
-                        <i class="icon-star fav-icon"></i>
-                    </a>
-                    {% endif %}
-                    {% if user == image.author %}
-                    <a href="{% url 'edit-image' image.id %}" title="Edit picture">
-                        <i class="icon-pencil-squared edit-icon"></i>
-                    </a>
-                    <a href="{% url 'delete-image' image.id %}" title="Delete picture">
-                        <i class="icon-cancel-circled delete-icon"></i>
-                    </a>
-                    {% endif %}
-                </div>
+    <div class="{% cycle 'col-lg-3 col-md-6 col-6' 'col-lg-3 col-md-6 col-6' 'col-lg-3 col-md-4 col-6' 'col-lg-3 col-md-4 col-6' 'col-lg-4 col-md-4 col-6' 'col-lg-4 col-md-6 col-6' 'col-lg-4 col-md-6 col-6' %}">
+        <div class="pic-box">
+            <a href="{% url 'detail-image' image.id %}">
+                <div class="pic-only" style="background-image:url({{ image.image.url }});"></div>
+            </a>
+            <h5>
+                <a href="{% url 'detail-image' image.id %}" class="image-title">
+                    {{ image.title|capfirst|truncatechars:30 }}
+                </a>
+            </h5>
+            <div class="pic-box-left">By <a href="{% url 'profile' image.author.profile.id %}" class="profile-link">{{ image.author.username }}</a></div>
+            <div class="pic-box-right">{{ image.width }} x {{ image.height }}</div>
+            <div class="pic-box-left">{{ image.date|timesince|onlyfirst }} ago</div>
+            <div class="pic-box-right">
+                {% if user in image.favorites.all %}
+                <a href="{% url 'favorite-image' image.id %}" title="Remove from favorites">
+                    <i class="icon-star fav-icon" style="color:gold"></i>
+                </a>
+                {% else %}
+                <a href="{% url 'favorite-image' image.id %}" title="Add to favorites">
+                    <i class="icon-star fav-icon"></i>
+                </a>
+                {% endif %}
+                {% if user == image.author %}
+                <a href="{% url 'edit-image' image.id %}" title="Edit picture">
+                    <i class="icon-pencil-squared edit-icon"></i>
+                </a>
+                <a href="{% url 'delete-image' image.id %}" title="Delete picture">
+                    <i class="icon-cancel-circled delete-icon"></i>
+                </a>
+                {% endif %}
             </div>
         </div>
+    </div>
     {% endfor %}
+    <div class="col-12 mx-auto mt-3 mb-3">
+        <div class="text-center">
+        {% if images.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ images.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ images.number }} of {{ images.paginator.num_pages }}.
+        </span>
+
+        {% if images.has_next %}
+            <a href="?page={{ images.next_page_number }}">next</a>
+            <a href="?page={{ images.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+        </div>
+    </div>
 {% endblock %}

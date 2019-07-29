@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from .models import Picture
 from .forms import UploadPictureForm, EditPictureForm
 
@@ -10,7 +11,13 @@ from .forms import UploadPictureForm, EditPictureForm
 def board(request):
 
     header = 'Most recent images'
-    images = Picture.objects.all().order_by('-date')[:21]
+    all_images = Picture.objects.all().order_by('-date')
+    paginator = Paginator(all_images, 14)
+    try:
+        page = request.GET['page']
+    except:
+        page = 1
+    images = paginator.get_page(page)
     return render(request, 'main_board/home.html', {'images': images, 'header': header})
 
 
