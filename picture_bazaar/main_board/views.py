@@ -12,13 +12,16 @@ def board(request):
 
     header = 'Most recent images'
     all_images = Picture.objects.all().order_by('-date')
-    paginator = Paginator(all_images, 14)
+    paginator = Paginator(all_images, 21)
     try:
         page = request.GET['page']
     except:
         page = 1
     images = paginator.get_page(page)
-    return render(request, 'main_board/home.html', {'images': images, 'header': header})
+    grid_styling = "'col-lg-3 col-md-6 col-6' 'col-lg-3 col-md-6 col-6' 'col-lg-3 col-md-4 col-6' " \
+                   "'col-lg-3 col-md-4 col-6' 'col-lg-4 col-md-4 col-6' 'col-lg-4 col-md-6 col-6' 'col-lg-4 col-md-6 col-6'"
+
+    return render(request, 'main_board/home.html', {'images': images, 'header': header, 'grid_styling': grid_styling})
 
 
 def filter_images(request):

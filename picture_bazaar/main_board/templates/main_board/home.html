@@ -11,7 +11,8 @@
         <h2>{{ header }}</h2>
     </div>
     {% for image in images %}
-    <div class="{% cycle 'col-lg-3 col-md-6 col-6' 'col-lg-3 col-md-6 col-6' 'col-lg-3 col-md-4 col-6' 'col-lg-3 col-md-4 col-6' 'col-lg-4 col-md-4 col-6' 'col-lg-4 col-md-6 col-6' 'col-lg-4 col-md-6 col-6' %}">
+    {{ grid_styling }}
+    <div class="{% with grid_styling|cycle %}">
         <div class="pic-box">
             <a href="{% url 'detail-image' image.id %}">
                 <div class="pic-only" style="background-image:url({{ image.image.url }});"></div>
@@ -46,21 +47,33 @@
         </div>
     </div>
     {% endfor %}
+    {% if images.has_other_pages %}
     <div class="col-12 mx-auto mt-3 mb-3">
         <div class="text-center">
-        {% if images.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ images.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ images.number }} of {{ images.paginator.num_pages }}.
-        </span>
-
-        {% if images.has_next %}
-            <a href="?page={{ images.next_page_number }}">next</a>
-            <a href="?page={{ images.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
+            {% if images.previous_page_number > 1 %}
+            <a class="btn btn-outline-success" href="?page=1">1</a>
+            {% endif %}
+            {% if images.previous_page_number > 2 %}
+            ...
+            {% endif %}
+            {% if images.has_previous %}
+            <a class="btn btn-outline-success" href="?page={{ images.previous_page_number }}">
+                {{ images.previous_page_number }}
+            </a>
+            {% endif %}
+            <span class="btn btn-success">{{ images.number }}</span>
+            {% if images.has_next %}
+            <a class="btn btn-outline-success" href="?page={{ images.next_page_number }}">
+                {{ images.next_page_number }}
+            </a>
+            {% endif %}
+            {% if images.next_page_number|add:1 < images.paginator.num_pages %}
+            ...
+            {% endif %}
+            {% if images.next_page_number < images.paginator.num_pages %}
+            <a class="btn btn-outline-success" href="?page={{ images.paginator.num_pages }}">{{ images.paginator.num_pages }}</a>
+            {% endif %}
         </div>
     </div>
+    {% endif %}
 {% endblock %}

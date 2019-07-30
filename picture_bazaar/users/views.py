@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.paginator import Paginator
 from .forms import UserRegisterForm, EditUserForm, EditProfileForm
 from .models import Profile
 from main_board.models import Picture
@@ -21,7 +22,15 @@ def register(request):
 def profile(request, profile_id=None):
     if profile_id:
         profile = Profile.objects.get(id=profile_id)
-        images = Picture.objects.filter(author=profile.user)
+        all_images = Picture.objects.filter(author=profile.user)
+
+        paginator = Paginator(all_images, 14)
+        try:
+            page = request.GET['page']
+        except:
+            page = 1
+        images = paginator.get_page(page)
+
         return render(request, 'users/profile.html', {'profile': profile, 'images': images})
 
     if request.method == 'POST':

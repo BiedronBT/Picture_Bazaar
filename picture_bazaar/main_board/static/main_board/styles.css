@@ -59,7 +59,7 @@ h5 {
 .button-green {
   color: #fafafa;
   background-color: #3cb371;
-  box-shadow: 0px 3px 2px 1px rgba(20, 130, 90, 1);
+  box-shadow: 0px 1px 1px 3px rgba(20, 130, 90, 0.8);
 }
 
 .button-green:hover {
@@ -71,7 +71,7 @@ h5 {
 .button-red {
   color: #fafafa;
   background-color: #fe6347;
-  box-shadow: 0px 3px 2px 1px rgba(180, 70, 60, 1);
+  box-shadow: 0px 1px 1px 3px rgba(180, 70, 60, 0.8);
   padding: 6px 14px 8px;
 }
 
