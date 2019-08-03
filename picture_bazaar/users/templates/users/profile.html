@@ -6,20 +6,23 @@
 {% endblock %}
 
 {% block profile %}
-    <div class="col-lg-3"></div>
-    <div class="col-lg-6 col-md-6 col-sm-8 mx-auto form-box mb-2">
+    <div class="col-lg-6 col-md-8 col-12 form-box mb-2">
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-3">
-                <div class="profile-img" style="background-image:url({{ profile.image.url }});"></div>
-            </div>
-            <div class="col-7 mt-5">
+            <div class="col-md-4">
+                <div class="profile-img mx-auto" style="background-image:url({{ profile.image.url }});"></div>
                 <h3 style="text-align:center">{{ profile.user.username }}</h3>
             </div>
-            <div class="col-1"></div>
+            <div class="col-md-8">
+                <div class="profile-specs">
+                    <div>First Name: <span class="spec">{{ profile.first_name }}</span></div>
+                    <hr>
+                    <div>Last Name: <span class="spec">{{ profile.last_name }}</span></div>
+                    <hr>
+                    <div>Country: <span class="spec">{{ profile.country }}</span></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-lg-3"></div>
     <div class="col-12 mx-auto mt-5">
         <h2>{{ images|length }} image{{ images|length|pluralize }} uploaded by {{ profile.user.username }}</h2>
     </div>

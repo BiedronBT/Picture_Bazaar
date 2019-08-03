@@ -12,16 +12,15 @@
     </div>
     <div class="col-lg-3 col-sm-8 col-10 mt-1 mx-auto">
         <div class="detail-pic-specs">
-
             <div>
                 <div class="mx-auto">
                     <div class="user-icon mx-auto" style="background-image:url({{ image.author.profile.image.url }});"></div>
                     <div><a href="{% url 'profile' image.author.profile.id %}" class="profile-link" style="font-size:18px">{{ image.author.username }}</a></div>
                 </div>
                 <hr>
-                <div>Date: <div class="spec">{{ image.date|date:'d M Y' }}</div></div>
+                <div>Date: <div class="detail-spec">{{ image.date|date:'d M Y' }}</div></div>
                 <hr>
-                <div>Size: <div class="spec">{{ image.width }} x {{ image.height }}</div></div>
+                <div>Size: <div class="detail-spec">{{ image.width }} x {{ image.height }}</div></div>
                 <hr>
                 <div>
                     <div class="mb-2">Tags: </div>

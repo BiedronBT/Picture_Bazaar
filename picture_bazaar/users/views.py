@@ -24,14 +24,14 @@ def profile(request, profile_id=None):
         profile = Profile.objects.get(id=profile_id)
         all_images = Picture.objects.filter(author=profile.user)
 
-        paginator = Paginator(all_images, 14)
+        paginator = Paginator(all_images, 8)
         try:
             page = request.GET['page']
         except:
             page = 1
         images = paginator.get_page(page)
-
-        return render(request, 'users/profile.html', {'profile': profile, 'images': images})
+        grid_style = 'equal'
+        return render(request, 'users/profile.html', {'profile': profile, 'images': images, 'grid_style': grid_style})
 
     if request.method == 'POST':
         user_form = EditUserForm(request.POST, instance=request.user)

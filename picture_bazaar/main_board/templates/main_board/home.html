@@ -11,8 +11,11 @@
         <h2>{{ header }}</h2>
     </div>
     {% for image in images %}
-    {{ grid_styling }}
-    <div class="{% with grid_styling|cycle %}">
+    {% if grid_style == 'various' %}
+    <div class="{% cycle 'col-lg-3 col-md-6 col-6' 'col-lg-3 col-md-6 col-6' 'col-lg-3 col-md-4 col-6' 'col-lg-3 col-md-4 col-6' 'col-lg-4 col-md-4 col-6' 'col-lg-4 col-md-6 col-6' 'col-lg-4 col-md-6 col-6' %}">
+    {% elif grid_style == 'equal' %}
+    <div class="col-lg-3 col-md-4 col-6 mx-auto">
+    {% endif %}
         <div class="pic-box">
             <a href="{% url 'detail-image' image.id %}">
                 <div class="pic-only" style="background-image:url({{ image.image.url }});"></div>

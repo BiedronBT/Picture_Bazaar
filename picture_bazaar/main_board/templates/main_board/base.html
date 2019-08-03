@@ -21,7 +21,7 @@
 
 <body>
     <header class="site-header mb-2">
-    <nav class="navbar navbar-expand-md fixed-top my-navbar my-navbar">
+    <nav class="navbar navbar-expand-md fixed-top my-navbar">
         <a class="navbar-brand logo ml-3" href="{% url 'board' %}">Picture Bazaar</a>
         <div class="d-flex flex-row order-2 order-md-3">
                 {% if user.is_authenticated %}
@@ -34,7 +34,7 @@
                         </a>
                         <a class="no-decoration" href="{% url 'profile' user.id %}">
                             <div class="user-menu-item">
-                                My Pictures
+                                My Profile
                             </div>
                         </a>
                         <a class="no-decoration" href="{% url 'profile' %}">
@@ -89,11 +89,25 @@
                 <div class="row">
                     {% block content %}
                     {% endblock %}
-
                 </div>
             </div>
         </div>
     </main>
+    <footer class="site-footer mt-5">
+        <div id="footer">
+            <div class="row">
+                <div class="col-lg-4" style="border-right:3px dotted slategrey">
+                    About
+                </div>
+                <div class="col-lg-4" style="border-right:3px dotted slategrey">
+                    Home
+                </div>
+                <div class="col-lg-4">
+                    Contact
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

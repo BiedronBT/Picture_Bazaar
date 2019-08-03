@@ -5,6 +5,10 @@ body {
   padding: 0.5em;
 }
 
+main {
+  min-height: 35em;
+}
+
 hr {
   margin: 12px 3px 8px;
   background-color: lightgrey;
@@ -13,7 +17,7 @@ hr {
 .logo {
   color: #ffffff;
   font-family: Lobster;
-  font-size: 40px;
+  font-size: 35px;
   line-height: 40px;
   vertical-align: center;
   transition: 1s;
@@ -21,7 +25,7 @@ hr {
 
 .logo:hover {
   color: #ffffff;
-  transform: scale(1.03);
+  transform: scale(1.01);
 }
 
 img {
@@ -37,6 +41,9 @@ h2 {
 
 h3 {
   vertical-align: top;
+  font-family: Lobster;
+  color: slategrey;
+
 }
 
 h5 {
@@ -139,7 +146,7 @@ h5 {
 }
 
 .form-box {
-  padding: 30px 50px;
+  padding: 4% 3%;
   background: #e7f8e3;
   text-align: left;
   border-radius: 6px;
@@ -185,7 +192,7 @@ h5 {
 }
 
 .pic-box:hover {
-  transform: scale(1.03);
+  transform: scale(1.01);
   box-shadow: 0px 10px 14px 0px rgba(0, 0, 0, 0.18);
 }
 
@@ -222,12 +229,19 @@ h5 {
 .detail-pic-specs {
   padding: 30px 15px 30px;
   border-radius: 5px;
-  color: slategrey;
+  color: lightslategrey;
   font-size: 16px;
   font-weight: 600;
   text-align: center;
   background-color: #e7f8e3;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-specs {
+  padding: 10px;
+  color: slategrey;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .pic-tag {
@@ -240,7 +254,7 @@ h5 {
   background-image: linear-gradient(70deg, lightcoral, lightsalmon);
 }
 
-.spec {
+.detail-spec {
   font-size: 13px;
   color: slategrey;
 }
@@ -297,4 +311,12 @@ h5 {
 .fav-icon:hover {
   text-decoration: none;
   color: gold;
+}
+
+
+
+#footer {
+  padding: 10px;
+  background-color: #cdc;
+  text-align: center;
 }
